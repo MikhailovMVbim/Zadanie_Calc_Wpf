@@ -1,0 +1,57 @@
+﻿<Window x:Class="Zadanie_Calc_Wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Zadanie_Calc_Wpf"
+        xmlns:vm="clr-namespace:Zadanie_Calc_Wpf.ViewModels"
+        mc:Ignorable="d"
+        Title="Karkulator" Height="510" Width="300" ResizeMode="NoResize"
+        Style="{StaticResource WindowStyle}">
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+    <Window.CommandBindings>
+        <CommandBinding Command="local:MyCommands.Exit" Executed="Exit_Executed"/>
+        <CommandBinding Command="Help" Executed="Help_Executed"/>
+    </Window.CommandBindings>
+    <StackPanel>
+        <Menu Background="Black">
+            <MenuItem Header="≡" Background="Black" Foreground="White" FontSize="20">
+                <MenuItem Header="Выход" Background="Black" FontSize="16" Command="local:MyCommands.Exit"/>
+                <MenuItem Header="О программе" Background="Black" FontSize="16" Command="Help"/>
+            </MenuItem>
+        </Menu>
+        <DockPanel Height="60" Margin="5,0,5,0">
+            <Label Content="{Binding Path=TextOperation}" DockPanel.Dock="Left" Foreground="MediumAquamarine" FontSize="30" FontWeight="Bold" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding Path=TextEnter}" TextAlignment="Right" Foreground="White" FontSize="36" FontWeight="Bold" VerticalAlignment="Center"/>
+        </DockPanel>
+        <TextBlock Text="{Binding Path=TextMemory}" TextAlignment="Right" Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="10,0,10,0"/>
+        <UniformGrid Grid.Row="1" Rows="6" Columns="4">
+            <Button Content="=" Style="{StaticResource resButtonStyle}" Command="{Binding Path=ResultCommand}"/>
+            <Button Content="CE" Style="{StaticResource funcButtonStyle}" Command="{Binding Path=ClearInputCommand}"/>
+            <Button Content="C" Style="{StaticResource funcButtonStyle}" Command="{Binding Path=ClearCommand}"/>
+            <Button Content="◄" Style="{StaticResource funcButtonStyle}" Command="{Binding Path=BackCommand}"/>
+            <Button Content="1/x" Style="{StaticResource funcButtonStyle}" Command="{Binding Path=DivOneCommand}"/>
+            <Button Content="X²" Style="{StaticResource funcButtonStyle}" Command="{Binding Path=SqrCommand}"/>
+            <Button Content="X³" Style="{StaticResource funcButtonStyle}" Command="{Binding Path=QubCommand}"/>
+            <Button Content="√x" Style="{StaticResource funcButtonStyle}" Command="{Binding Path=SqrtCommand}"/>
+            <Button Content="1" Style="{StaticResource numberButtonStyle}" Command="{Binding Path=Press1}"/>
+            <Button Content="2" Style="{StaticResource numberButtonStyle}" Command="{Binding Path=Press2}"/>
+            <Button Content="3" Style="{StaticResource numberButtonStyle}" Command="{Binding Path=Press3}"/>
+            <Button Content="/" Style="{StaticResource funcButtonStyle}" Command="{Binding Path=DivCommand}"/>
+            <Button Content="4" Style="{StaticResource numberButtonStyle}" Command="{Binding Path=Press4}"/>
+            <Button Content="5" Style="{StaticResource numberButtonStyle}" Command="{Binding Path=Press5}"/>
+            <Button Content="6" Style="{StaticResource numberButtonStyle}" Command="{Binding Path=Press6}"/>
+            <Button Content="*" Style="{StaticResource funcButtonStyle}" Command="{Binding Path=MultCommand}"/>
+            <Button Content="7" Style="{StaticResource numberButtonStyle}" Command="{Binding Path=Press7}"/>
+            <Button Content="8" Style="{StaticResource numberButtonStyle}" Command="{Binding Path=Press8}"/>
+            <Button Content="9" Style="{StaticResource numberButtonStyle}" Command="{Binding Path=Press9}"/>
+            <Button Content="-" Style="{StaticResource funcButtonStyle}" Command="{Binding Path=SubCommand}"/>
+            <Button Content="+/-" Style="{StaticResource numberButtonStyle}" Command="{Binding Path=ZnakCommand}"/>
+            <Button Content="0" Style="{StaticResource numberButtonStyle}" Command="{Binding Path=Press0}"/>
+            <Button Content="," Style="{StaticResource numberButtonStyle}" Command="{Binding Path=PressComma}"/>
+            <Button Content="+" Style="{StaticResource funcButtonStyle}" Command="{Binding Path=AddCommand}"/>
+        </UniformGrid>
+    </StackPanel>
+</Window>
